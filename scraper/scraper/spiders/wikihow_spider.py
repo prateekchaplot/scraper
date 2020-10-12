@@ -19,9 +19,7 @@ class WikihowScraper(scrapy.Spider):
         text = str('[{}]({})\n===\n').format(title, response.url)
         for heading in headings:
             text += heading + '\n---\n'
-            # text += body[0] + '\n'
-
-            # i = 1
+            
             i = 0
             while True:
                 text += body[i] + '\n'
