@@ -15,16 +15,15 @@ class WikihowScraper(scrapy.Spider):
         headings = response.css('.in-block .mw-headline::text').getall()
         body = response.css('.whb::text').getall()
         steps = response.css('.step_num::text').getall()
-
         text = str('[{}]({})\n===\n').format(title, response.url)
+
+        i = 0
         for heading in headings:
             text += heading + '\n---\n'
-            
-            i = 0
             while True:
                 text += body[i] + '\n'
                 i += 1
-                if (steps[i] == None or steps[i] == '1'):
+                if (i >= len(steps) or steps[i] == '1'):
                     break
 
             text += '\n'
