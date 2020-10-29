@@ -1,6 +1,10 @@
 import scrapy
 # import numpy as np
 
+def savefile(text, filename):
+  with open(filename, 'a+') as f:
+            f.write(text)
+
 class WikihowScraper(scrapy.Spider):
     name = 'wikihow'
     start_urls = [
@@ -28,5 +32,4 @@ class WikihowScraper(scrapy.Spider):
 
             text += '\n'
 
-        with open('wikihow.txt', 'a+') as f:
-            f.write(text)
+        savefile(text, 'wikihow.txt')
